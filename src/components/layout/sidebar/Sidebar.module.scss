@@ -1,0 +1,81 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;           
+    background-color: #F5F5F5; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    border-right: 1px solid #ddd; 
+    
+    // Если нужен скролл, можно добавить:
+    // overflow-y: auto;
+  }
+  
+  .brand {
+    padding: 20px;
+  
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1A1A1A; 
+    }
+  
+    p {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: #666;
+    }
+  }
+  
+  .nav {
+    flex: 1;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    li {
+      a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s;
+  
+        &:hover {
+          background-color: #e7e7e7;
+        }
+      }
+  
+      &.active a {
+        background-color: #dedede;
+        font-weight: 600;
+      }
+    }
+  }
+  
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    background-color: #666; 
+    border-radius: 2px;
+  }
+  
+  .footer {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+  
+    p {
+      margin: 0;
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+    }
+  }
+  
