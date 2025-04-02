@@ -1,81 +1,91 @@
+@use "./../../../styles/variables" as *;
+
 .sidebar {
-    width: 250px;
-    height: 100vh;           
-    background-color: #F5F5F5; 
+  width: $sidebar-width;
+  height: 100vh;
+  background-color: $background-color;
+  box-shadow: $box-shadow-sidebar-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.brand {
+  color: $primary-color;
+  h2 {
+    font-size: $font-size-base;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    margin: 4px 0 0;
+    font-size: $font-size-xs;
+  }
+}
+
+.drawer {
+  border: 1px solid $drawer-border-color;
+  width: 210px;
+  height: 0px;
+  margin: 20px 0;
+}
+.nav {
+  flex: 1;
+  ul {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
-    border-right: 1px solid #ddd; 
-    
-    // Если нужен скролл, можно добавить:
-    // overflow-y: auto;
+    gap: 12px;
   }
-  
-  .brand {
-    padding: 20px;
-  
-    h2 {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 600;
-      color: #1A1A1A; 
-    }
-  
-    p {
-      margin: 4px 0 0;
-      font-size: 12px;
-      color: #666;
-    }
-  }
-  
-  .nav {
-    flex: 1;
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-  
-    li {
-      a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 20px;
-        color: #333;
-        text-decoration: none;
-        font-size: 14px;
-        transition: background-color 0.2s;
-  
-        &:hover {
-          background-color: #e7e7e7;
-        }
-      }
-  
-      &.active a {
-        background-color: #dedede;
-        font-weight: 600;
-      }
-    }
-  }
-  
 
-  .icon {
-    width: 16px;
-    height: 16px;
-    background-color: #666; 
-    border-radius: 2px;
-  }
-  
-  .footer {
-    padding: 20px;
-    border-top: 1px solid #ddd;
-  
-    p {
-      margin: 0;
-      font-size: 12px;
-      color: #999;
+  li {
+    a {
+      display: flex;
+      align-items: center;
       text-align: center;
+      gap: 20px;
+      justify-content: start;
+      padding: 12px 20px;
+      border-radius: $border-radius-input;
+      color: $primary-color;
+      border: 1px solid $border-filled-regular-button;
+      text-decoration: none;
+      font-size: $font-size-md;
+      line-height: $line-height-md;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: $bg-selector-hovered;
+      }
+    }
+
+    &.active a {
+      background-color: $background-filled-regular-button;
+      color: $light-color-button-text;
     }
   }
-  
+}
+
+.darkIcon {
+  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+  transition: filter 0.2s;
+}
+
+.lightIcon {
+  filter: brightness(1.5);
+  transition: filter 0.2s;
+}
+
+.footer {
+  p {
+    font-weight: 400;
+    font-size: $font-size-xs;
+    line-height: $line-height-xs;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: $light-color;
+  }
+}
