@@ -31,6 +31,33 @@
   height: 0px;
   margin: 20px 0;
 }
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; // текст по центру
+  height: 48px; // задаем фиксированную высоту
+  padding-left: 48px; // чтобы текст не налезал на иконку
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: $primary-color;
+  transition: background-color 0.2s;
+}
+
+.nav li.active .navLink {
+  background-color: $background-filled-regular-button;
+  font-weight: 600;
+}
+
+.navLink img {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .nav {
   flex: 1;
   ul {
@@ -41,11 +68,6 @@
 
   li {
     a {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      gap: 20px;
-      justify-content: start;
       padding: 12px 20px;
       border-radius: $border-radius-input;
       color: $primary-color;
