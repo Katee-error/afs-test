@@ -1,12 +1,11 @@
 'use client';
-
 import React from 'react';
 import Image from 'next/image';
-import logoIcon from "./../../../../public/assets/icons/Logo.svg";
-import companyIcon from "./../../../../public/assets/icons/Company.svg";
-import searchIcon from "./../../../../public/assets/icons/Search.svg";
-import settingsIcon from "./../../../../public/assets/icons/Settings.svg";
-import signOutIcon from "./../../../../public/assets/icons/SignOut.svg";
+import logoIcon from "./../../../public/assets/icons/Logo.svg";
+import companyIcon from "./../../../public/assets/icons/Company.svg";
+import searchIcon from "./../../../public/assets/icons/Search.svg";
+import settingsIcon from "./../../../public/assets/icons/Settings.svg";
+import signOutIcon from "./../../../public/assets/icons/SignOut.svg";
 import styles from './MainMenu.module.scss';
 
 export const MainMenu = () => {

@@ -2,9 +2,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import companyIcon from "./../../../../public/assets/icons/Company.svg";
-import contractorIcon from "./../../../../public/assets/icons/Contractor.svg";
-import accountIcon from "./../../../../public/assets/icons/Account.svg";
+import companyIcon from "./../../../public/assets/icons/Company.svg";
+import contractorIcon from "./../../../public/assets/icons/Contractor.svg";
+import accountIcon from "./../../../public/assets/icons/Account.svg";
 import styles from "./Sidebar.module.scss";
 import { usePathname } from "next/navigation";
 
