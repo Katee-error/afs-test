@@ -1,0 +1,13 @@
+.photoGrid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .photoItem {
+    border-radius: 8px;
+    overflow: hidden;
+    width: 144px; 
+    height: 108px;
+  }
+  

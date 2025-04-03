@@ -1,0 +1,18 @@
+@use './../.././../styles/variables' as *;
+
+.infoRow {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.label {
+  width: 150px;
+  color: $secondary-color;
+  font-size: $font-size-md; // 13px
+}
+
+.value {
+  font-weight: 500;
+  font-size: $font-size-md; // 13px
+  color: $primary-color;
+}

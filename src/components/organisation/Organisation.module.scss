@@ -1,0 +1,43 @@
+@use "./../../styles/variables" as *;
+
+.organisation {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.organisation_container {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.organisation_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 200px;
+  
+}
+.organisation_title {
+  font-weight: 500;
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
+  letter-spacing: 0.01em;
+  color: $primary-color;
+}
+.organisation_icons_group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.organisation_icon_edit {
+    filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+}
+.organisation_icon_delete {
+    filter: invert(34%) sepia(96%) saturate(5914%) hue-rotate(359deg) brightness(90%) contrast(88%);
+  transition: filter 0.2s;
+}

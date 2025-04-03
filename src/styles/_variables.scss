@@ -15,9 +15,9 @@ $background-filled-hovered-button: rgba(255, 255, 255, 0.2);
 $background-filled-click-button: rgba(255, 255, 255, 0.3); 
 
 //Outline button
-$border-filled-regular-button:rgba(0, 0, 0, 0.2); 
-$border-filled-hovered-button: rgba(0, 0, 0, 0.4); 
-$border-filled-click-button: #6243e6; 
+$border-outline-regular-button:rgba(0, 0, 0, 0.2); 
+$border-outline-hovered-button: rgba(0, 0, 0, 0.4); 
+$border-outline-click-button: #6243e6; 
 
 //Input border
 $border-input-regular-color: rgba(0, 0, 0, 0.2); 
@@ -48,7 +48,7 @@ $drawer-border-color:rgba(0, 0, 0, 0.1);
 $font-size-base: 14px;     
 $font-size-md: 13px;     
 $font-size-xs: 11px;     
-$font-size-large: 28px;   
+$font-size-lg: 28px;   
 
 //line-height
 $line-height-base: 171%;
