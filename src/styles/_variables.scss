@@ -32,6 +32,11 @@ $border-selector-focused-color:#35cdfd;
 $bg-selector:rgba(0, 0, 0, 0.05);
 $bg-selector-hovered:rgba(0, 0, 0, 0.02);
  
+//Side menu button
+$bg-regular-side-menu: transparent;
+$bg-hovered-side-menu:rgba(255, 255, 255, 0.1);
+$bg-selected-side-menu:rgba(255, 255, 255, 0.2);
+
 //Box shadow
 $box-shadow-sidebar-color: 4px 0 16px 0 rgba(0, 0, 0, 0.08);  
 $box-shadow-card-color: 0 3px 8px 0 rgba(0, 0, 0, 0.12);;  
