@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import styles from './RemoveOrganizationDialog.module.scss';
-import Modal from '@/components/modal/modal';
+import React from "react";
+import styles from "./../Modal.module.scss";
+import { Modal } from "../modal";
 
 interface RemoveOrganizationDialogProps {
   isOpen: boolean;
@@ -8,11 +8,9 @@ interface RemoveOrganizationDialogProps {
   onRemove: () => void;
 }
 
-const RemoveOrganizationDialog: FC<RemoveOrganizationDialogProps> = ({
-  isOpen,
-  onClose,
-  onRemove,
-}) => {
+export const RemoveOrganizationDialog: React.FC<
+  RemoveOrganizationDialogProps
+> = ({ isOpen, onClose, onRemove }) => {
   const handleRemove = () => {
     onRemove();
     onClose();
@@ -35,5 +33,3 @@ const RemoveOrganizationDialog: FC<RemoveOrganizationDialogProps> = ({
     </Modal>
   );
 };
-
-export default RemoveOrganizationDialog;

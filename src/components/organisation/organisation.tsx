@@ -10,8 +10,8 @@ import trashIcon from "./../../../public/assets/icons/Trash.svg";
 import img1 from "./../../../public/assets/photo/image 1.png";
 import img2 from "./../../../public/assets/photo/image 2.png";
 import img3 from "./../../../public/assets/photo/image 3.png";
-import EditOrganizationDialog from "../dialog/edit-organisation-dialog/edit-organisation-dialog";
-import RemoveOrganizationDialog from "../dialog/remove-organization-dialog/remove-organization-dialog";
+import { EditOrganizationDialog, RemoveOrganizationDialog } from "../modal/dialog";
+
 interface Props {
   className?: string;
 }
@@ -102,6 +102,7 @@ export const Organisation: React.FC<Props> = ({ className }) => {
         onClose={() => setIsRemoveOpen(false)}
         onRemove={handleRemoveOrganization}
       />
+      
     </div>
   );
 };

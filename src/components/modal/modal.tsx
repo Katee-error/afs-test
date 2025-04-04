@@ -1,6 +1,5 @@
 'use client';
-
-import React, { FC } from 'react';
+import React from 'react';
 import styles from './Modal.module.scss';
 
 interface ModalProps {
@@ -9,7 +8,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
@@ -24,4 +23,3 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   );
 };
 
-export default Modal;

@@ -1,6 +1,6 @@
-import React, { useState, FC } from 'react';
-import styles from './EditOrganizationDialog.module.scss';
-import Modal from '../../modal/modal';
+import React, { useState } from "react";
+import styles from "./../Modal.module.scss"
+import { Modal } from "../modal";
 
 interface EditOrganizationDialogProps {
   isOpen: boolean;
@@ -9,7 +9,7 @@ interface EditOrganizationDialogProps {
   onSave: (newName: string) => void;
 }
 
-const EditOrganizationDialog: FC<EditOrganizationDialogProps> = ({
+export const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> = ({
   isOpen,
   onClose,
   currentName,
@@ -19,7 +19,7 @@ const EditOrganizationDialog: FC<EditOrganizationDialogProps> = ({
 
   const handleSave = () => {
     onSave(orgName);
-    onClose(); 
+    onClose();
   };
 
   return (
@@ -33,10 +33,10 @@ const EditOrganizationDialog: FC<EditOrganizationDialogProps> = ({
           className={styles.input}
         />
         <div className={styles.buttons}>
-          <button onClick={onClose} className={styles.cancelBtn}>
+          <button onClick={onClose} className={styles.noBtn}>
             Cancel
           </button>
-          <button onClick={handleSave} className={styles.saveBtn}>
+          <button onClick={handleSave} className={styles.yesBtn}>
             Save changes
           </button>
         </div>
@@ -44,5 +44,3 @@ const EditOrganizationDialog: FC<EditOrganizationDialogProps> = ({
     </Modal>
   );
 };
-
-export default EditOrganizationDialog;
