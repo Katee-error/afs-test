@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { CompanyDetailsCard } from "../card/company-details-card/company-details-card";
 import ContactsCard from "../card/contact-card/contact-card";
-import PhotosCard from "../card/photo-card/photo-card";
+import {PhotosCard} from "../card/photo-card/photo-card";
 import Image from "next/image";
 import styles from "./Organisation.module.scss";
 import editIcon from "./../../../public/assets/icons/Edit.svg";
@@ -86,7 +86,7 @@ export const Organisation: React.FC<Props> = ({ className }) => {
           }}
         />
         <PhotosCard
-          photos={photos}
+         photos={photos}
           onAdd={() => console.log("Add new photo")}
         />
       </div>

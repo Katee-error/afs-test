@@ -13,10 +13,12 @@ interface Photo {
 
 export interface PhotosCardProps {
   photos: Photo[];
-  onAdd: (photo: File) => void;
 }
 
-const PhotosCard: React.FC<PhotosCardProps> = ({ photos, onAdd }) => {
+export const PhotosCard: React.FC<PhotosCardProps> = ({
+  photos: defaultPhotos,
+}) => {
+  const [photos, setPhotos] = useState<Photo[]>(defaultPhotos);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddClick = () => {
@@ -27,10 +29,15 @@ const PhotosCard: React.FC<PhotosCardProps> = ({ photos, onAdd }) => {
     setIsModalOpen(false);
   };
 
-  const handlePhotoAdd = (photo: File) => {
-    onAdd(photo);
+  const handlePhotoAdd = (file: File) => {
+    const newPhoto: Photo = {
+      id: Date.now().toString(),
+      thumbUrl: URL.createObjectURL(file),
+      alt: file.name,
+    };
+    setPhotos((prevPhotos) => [...prevPhotos, newPhoto]);
+    setIsModalOpen(false);
   };
-
   return (
     <>
       <Card
@@ -60,13 +67,11 @@ const PhotosCard: React.FC<PhotosCardProps> = ({ photos, onAdd }) => {
       </Card>
       {isModalOpen && (
         <AddPhotoDialog
+          isOpen={true}
           onClose={handleModalClose}
           onPhotoAdd={handlePhotoAdd}
-          isOpen={true}
         />
       )}
     </>
   );
 };
-
-export default PhotosCard;
