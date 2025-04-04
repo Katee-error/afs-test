@@ -1,0 +1,100 @@
+@use './../../../styles/variables' as *;
+
+.customMultiSelect {
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+    user-select: none;
+  }
+  
+  .control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  
+  .control:hover {
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .value {
+    flex: 1;
+  }
+  
+  .arrow {
+    margin-left: 8px;
+  }
+  
+  .menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+  }
+  
+  .checkbox {
+    appearance: none;
+    width: 0;
+    height: 0;
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .checkboxBox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin-right: 8px;
+    position: relative;
+  }
+  
+  .checkboxBox::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-image: url('/assets/icons/checkbox.svg'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .checkbox:checked + .checkboxBox::after {
+    opacity: 1;
+  }
+  
+  .optionLabel {
+    flex: 1;
+  }

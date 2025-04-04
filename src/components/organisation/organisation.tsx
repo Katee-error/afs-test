@@ -38,12 +38,10 @@ export const Organisation: React.FC<Props> = ({ className }) => {
   const handleSaveChanges = (newName: string) => {
     console.log("Saving new name:", newName);
     setOrgName(newName);
-    // Здесь можно вызвать API для сохранения изменений
   };
 
   const handleRemoveOrganization = () => {
     console.log("Removing organization...");
-    // Здесь можно вызвать API для удаления
   };
 
   return (
@@ -71,16 +69,21 @@ export const Organisation: React.FC<Props> = ({ className }) => {
       </div>
       <div className={styles.organisation}>
         <CompanyDetailsCard
-          agreement="1624/2-24 / 03.12.2024"
+          agreement="1624/2-24"
+          date="03.12.2024"
           businessEntity="Partnership"
           companyType="Funeral Home, Logistics services"
-          onEdit={() => console.log("Edit company details")}
+          onSave={(updatedData) => {
+            console.log("Updated data:", updatedData);
+          }}
         />
         <ContactsCard
           personName="David Rosenberg"
           phoneNumber="+1 702 555 2345"
           email="david_rosenberg88@gmail.com"
-          onEdit={() => console.log("Edit contacts")}
+          onSave={(updatedData) => {
+            console.log("Updated data:", updatedData);
+          }}
         />
         <PhotosCard
           photos={photos}

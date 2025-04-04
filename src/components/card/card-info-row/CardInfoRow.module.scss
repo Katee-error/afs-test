@@ -1,18 +1,155 @@
-@use './../.././../styles/variables' as *;
+@use "./../.././../styles/variables" as *;
 
 .infoRow {
   display: flex;
+  align-items: center;
   margin-bottom: 8px;
+  gap: 20px;
 }
 
 .label {
-  width: 150px;
   color: $secondary-color;
-  font-size: $font-size-md; // 13px
+  font-size: $font-size-md;
+  width: 170px;
 }
 
 .value {
   font-weight: 500;
-  font-size: $font-size-md; // 13px
+  font-size: $font-size-md;
   color: $primary-color;
+}
+
+.infoInput {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  height: 40px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 171%;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.8);
+  flex: 1;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border-color: #35cdfd;
+  }
+}
+
+.editModeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.viewModeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: #fff;
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+  &:focus {
+    outline: none;
+    border-color: #35cdfd;
+  }
+}
+
+.multiSelect {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.topFields {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.topField {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.topField label {
+  color: $secondary-color;
+  font-size: $font-size-md;
+}
+
+.topField input {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  height: 40px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 171%;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.8);
+  flex: 1;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border-color: #35cdfd;
+  }
+}
+
+.editingActions {
+  display: flex;
+  gap: 12px;
+  align-self: end;
+}
+
+.saveButton,
+.cancelButton {
+  display: flex;
+  cursor: pointer;
+  border: 1px solid $border-outline-regular-button;
+  border-radius: 8px;
+  padding: 6px;
+  min-width: 71px;
+  height: 28px;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  transition: background-color 0.2s;
+  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+
+  span {
+    font-size: $font-size-xs;
+    font-weight: 600;
+    line-height: $line-height-flattened-button;
+    letter-spacing: 0.04em;
+  }
 }

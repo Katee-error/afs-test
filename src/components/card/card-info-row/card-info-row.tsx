@@ -6,7 +6,7 @@ interface InfoRowProps {
   value: string | React.ReactNode;
 }
 
-const InfoRow: FC<InfoRowProps> = ({ label, value }) => {
+export const InfoRow: FC<InfoRowProps> = ({ label, value }) => {
   return (
     <div className={styles.infoRow}>
       <div className={styles.label}>{label}</div>
@@ -15,4 +15,4 @@ const InfoRow: FC<InfoRowProps> = ({ label, value }) => {
   );
 };
 
-export default InfoRow;
+

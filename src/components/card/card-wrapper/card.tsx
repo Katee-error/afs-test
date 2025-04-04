@@ -11,9 +11,11 @@ interface CardProps {
   title: string;
   children: ReactNode;
   actions?: CardAction[];
+  editingActions?: React.ReactNode;
 }
 
-const Card: FC<CardProps> = ({ title, children, actions }) => {
+
+const Card: FC<CardProps> = ({ title, children, actions, editingActions }) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
@@ -33,9 +35,15 @@ const Card: FC<CardProps> = ({ title, children, actions }) => {
             ))}
           </div>
         )}
+         {editingActions && (
+        <div className={styles.cardEditingActions}>
+          {editingActions}
+        </div>
+      )}
       </div>
       <div className={styles.cardBody}>{children}</div>
-    </div>
+      
+    </div>   
   );
 };
 
