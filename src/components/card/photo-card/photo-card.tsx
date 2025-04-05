@@ -5,7 +5,7 @@ import Card from "../card-wrapper/card";
 import addIcon from "./../../../../public/assets/icons/Add Photo.svg";
 import { AddPhotoDialog } from "@/components/modal/dialog/add-photo";
 
-interface Photo {
+export interface Photo {
   id: string;
   thumbUrl: string;
   alt: string;

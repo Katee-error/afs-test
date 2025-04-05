@@ -12,7 +12,7 @@ export const Sidebar = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/", label: "Organizations", icon: companyIcon },
+    { href: "/organisation", label: "Organizations", icon: companyIcon },
     { href: "/contractors", label: "Contractors", icon: contractorIcon },
     { href: "/clients", label: "Clients", icon: accountIcon },
   ];

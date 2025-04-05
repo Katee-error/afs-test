@@ -68,16 +68,9 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
     setIsEditing(false);
   };
 
+
   const handleBusinessEntityChange = (selectedValue: string) => {
     setEditBusinessEntity(selectedValue);
-  };
-
-  const handleToggleCompanyType = (value: string) => {
-    if (editCompanyTypes.includes(value)) {
-      setEditCompanyTypes(editCompanyTypes.filter((item) => item !== value));
-    } else {
-      setEditCompanyTypes([...editCompanyTypes, value]);
-    }
   };
 
   return (
