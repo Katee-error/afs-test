@@ -1,67 +1,50 @@
 "use client";
 import React, { useState } from "react";
-import { CompanyDetailsCard } from "../card/company-details-card/company-details-card";
-import ContactsCard from "../card/contact-card/contact-card";
-import { PhotosCard } from "../card/photo-card/photo-card";
 import Image from "next/image";
+import { observer } from "mobx-react-lite";
+import { useStore } from "@/app/providers/StoreContext";
 import styles from "./Organisation.module.scss";
+import {EditOrganizationDialog,RemoveOrganizationDialog,} from "../modal/dialog";
 import editIcon from "./../../../public/assets/icons/Edit.svg";
 import trashIcon from "./../../../public/assets/icons/Trash.svg";
-import { useOrganization } from "@/hooks/useOrganisation";
-import { useAuth } from "@/hooks/useAuth";
-import { useContact } from "@/hooks/useContsct";
-import {
-  EditOrganizationDialog,
-  RemoveOrganizationDialog,
-} from "../modal/dialog";
-import { useOrganizationActions } from "@/hooks/useOrganizationActions";
+import {useAuth,useContact,useOrganization,useOrganizationActions,} from "@/hooks";
+import { CompanyDetailsCard, ContactsCard, PhotosCard } from "../card";
 
-export const Organisation: React.FC = () => {
+export const Organisation: React.FC = observer(() => {
   const username = "test-user";
   const orgId = "12";
   const contactId = "16";
 
+  const { organizationStore } = useStore();
   const { token, loading: authLoading, error: authError } = useAuth(username);
 
-  const {
-    orgData,
-    loading: orgLoading,
-    error: orgError,
-    setOrgData,
-  } = useOrganization(token, orgId);
+  const { orgData, contactData, setOrgData, tempName, setContactData } =
+    organizationStore;
 
-  const {
-    contactData,
-    loading: contactLoading,
-    error: contactError,
-  } = useContact(token, contactId);
-
-  const { handleCompanyDetailsSave, handleRemoveOrganization, handlePhotoAdd } =
+  const { handleCompanyDetailsSave, handleRemoveOrganization, handleSaveName } =
     useOrganizationActions(orgId, setOrgData);
-    
+
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isRemoveOpen, setIsRemoveOpen] = useState(false);
-  const [orgName, setOrgName] = useState("Eternal Rest Funeral Home");
 
-  const isLoading = authLoading || orgLoading || contactLoading;
-  const isError = authError || orgError || contactError;
+  useOrganization(token, orgId, setOrgData);
+  useContact(token, contactId, setContactData);
 
-  if (isLoading) return <div>Загрузка...</div>;
-  if (isError)
-    return <div>Ошибка: {authError || orgError || contactError}</div>;
+  if (authLoading) return;
+  if (authError)
+    return <div className={styles.errorMessage}>Error: {authError}</div>;
+  if (!contactData) return;
+  if (!orgData)
+    return (
+      <div className={styles.errorMessage}>List organisations is empty</div>
+    );
 
-  const handleOpenEdit = () => setIsEditOpen(true);
-  const handleOpenRemove = () => setIsRemoveOpen(true);
-
-  const handleSaveChanges = (newName: string) => {
-    console.log("Saving new name:", newName);
-    setOrgName(newName);
-  };
+  const displayName = tempName || orgData.name;
 
   return (
     <div className={styles.organisation_container}>
       <div className={styles.organisation_header}>
-        <h1 className={styles.organisation_title}>{orgData.name}</h1>
+        <h1 className={styles.organisation_title}>{displayName}</h1>
         <div className={styles.organisation_icons_group}>
           <Image
             className={styles.organisation_icon_edit}
@@ -69,7 +52,7 @@ export const Organisation: React.FC = () => {
             alt="Edit Icon"
             width={20}
             height={20}
-            onClick={handleOpenEdit}
+            onClick={() => setIsEditOpen(true)}
           />
           <Image
             className={styles.organisation_icon_delete}
@@ -77,7 +60,7 @@ export const Organisation: React.FC = () => {
             alt="Delete Icon"
             width={20}
             height={20}
-            onClick={handleOpenRemove}
+            onClick={() => setIsRemoveOpen(true)}
           />
         </div>
       </div>
@@ -96,7 +79,7 @@ export const Organisation: React.FC = () => {
           phoneNumber={contactData.phone}
           email={contactData.email}
           onSave={(updatedData) => {
-            console.log("Updated data:", updatedData);
+            console.log("Updated contact:", updatedData);
           }}
         />
 
@@ -112,8 +95,8 @@ export const Organisation: React.FC = () => {
       <EditOrganizationDialog
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
-        currentName={orgName}
-        onSave={handleSaveChanges}
+        currentName={orgData.name}
+        onSave={handleSaveName}
       />
 
       <RemoveOrganizationDialog
@@ -123,4 +106,4 @@ export const Organisation: React.FC = () => {
       />
     </div>
   );
-};
+});

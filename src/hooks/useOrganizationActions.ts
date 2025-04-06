@@ -1,8 +1,11 @@
 import { useCallback } from "react";
-import { deleteOrganization, updateOrganization, uploadImage } from "./updateOrganization";
+import { organizationStore } from "@/stores/organisationStore";
+import { deleteOrganization, updateOrganization, uploadImage } from "@/api/organisations";
 
-
-export const useOrganizationActions = (orgId: string, setOrgData: (data: any) => void) => {
+export const useOrganizationActions = (
+  orgId: string,
+  setOrgData: (data: any) => void
+) => {
   const handleCompanyDetailsSave = useCallback(
     async (updatedData: {
       agreement: string;
@@ -20,22 +23,22 @@ export const useOrganizationActions = (orgId: string, setOrgData: (data: any) =>
           type: updatedData.companyType.split(",").map((t) => t.trim()),
         });
         setOrgData(updatedOrg);
-        console.log("Организация обновлена");
+        console.log("Organization updated");
       } catch (error) {
-        console.error("Ошибка обновления организации:", error);
+        console.error("Organization Update Error:", error);
       }
     },
     [orgId, setOrgData]
   );
 
-  const handleRemoveOrganization = useCallback(async () => {
+  const handleRemoveOrganization = async () => {
     try {
       await deleteOrganization(orgId);
-      console.log("Организация удалена");
+      setOrgData(null);
     } catch (error) {
-      console.error("Ошибка удаления организации:", error);
+      console.error("Error when deleting an organization:", error);
     }
-  }, [orgId]);
+  };
 
   const handlePhotoAdd = useCallback(
     async (file: File) => {
@@ -45,9 +48,25 @@ export const useOrganizationActions = (orgId: string, setOrgData: (data: any) =>
           ...prev,
           photos: [...(prev?.photos || []), uploaded],
         }));
-        console.log("Фото загружено");
+        console.log("Photo uploaded");
       } catch (error) {
-        console.error("Ошибка загрузки фото:", error);
+        console.error("Photo upload error:", error);
+      }
+    },
+    [orgId, setOrgData]
+  );
+
+  const handleSaveName = useCallback(
+    async (newName: string) => {
+      try {
+        const updated = await updateOrganization(orgId, {
+          ...organizationStore.orgData,
+          name: newName,
+        });
+        setOrgData(updated);
+        console.log("Title updated");
+      } catch (error) {
+        console.error("Error when updating the title:", error);
       }
     },
     [orgId, setOrgData]
@@ -57,5 +76,6 @@ export const useOrganizationActions = (orgId: string, setOrgData: (data: any) =>
     handleCompanyDetailsSave,
     handleRemoveOrganization,
     handlePhotoAdd,
+    handleSaveName,
   };
 };

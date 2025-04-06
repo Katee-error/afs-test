@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Card from "../card-wrapper/card";
+
 import editIcon from "./../../../../public/assets/icons/Edit.svg";
-import checkIcon from "./../../../../public/assets/icons/Check.svg"; // Иконка сохранения
-import closeIcon from "./../../../../public/assets/icons/X.svg"; // Иконка отмены
+import checkIcon from "./../../../../public/assets/icons/Check.svg"; 
+import closeIcon from "./../../../../public/assets/icons/X.svg"; 
 import { InfoRow } from "../card-info-row/card-info-row";
 import Image from "next/image";
 import styles from "./../card-info-row/CardInfoRow.module.scss";
+import { CardWrapper } from "../card-wrapper";
 interface ContactsCardProps {
   personName: string;
   phoneNumber: string;
@@ -17,7 +18,7 @@ interface ContactsCardProps {
   }) => void;
 }
 
-const ContactsCard: React.FC<ContactsCardProps> = ({
+export const ContactsCard: React.FC<ContactsCardProps> = ({
   personName,
   phoneNumber,
   email,
@@ -50,7 +51,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({
   };
 
   return (
-    <Card
+    <CardWrapper
     title="Company Details"
     actions={
       !isEditing
@@ -122,8 +123,8 @@ const ContactsCard: React.FC<ContactsCardProps> = ({
           <InfoRow label="E-mail:" value={editEmail} />
         </div>
       )}
-    </Card>
+    </CardWrapper>
   );
 };
 
-export default ContactsCard;
+

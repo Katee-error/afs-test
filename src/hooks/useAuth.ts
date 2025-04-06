@@ -10,10 +10,10 @@ export const useAuth = (username: string) => {
     const getToken = async () => {
       try {
         const response = await fetch(`https://test-task-api.allfuneral.com/auth?user=${username}`);
-        if (!response.ok) throw new Error("Ошибка авторизации");
+        if (!response.ok) throw new Error("Authorization error");
 
         const authHeader = response.headers.get("Authorization");
-        if (!authHeader) throw new Error("Токен не найден");
+        if (!authHeader) throw new Error("Token not found");
 
         setToken(authHeader); 
       } catch (err: any) {

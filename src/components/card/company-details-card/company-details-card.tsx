@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Card from "../card-wrapper/card";
 import Image from "next/image";
 import { InfoRow } from "../card-info-row/card-info-row";
 import editIcon from "./../../../../public/assets/icons/Edit.svg";
@@ -10,6 +9,7 @@ import styles from "./../card-info-row/CardInfoRow.module.scss";
 import { BUSINESS_ENTITY_OPTIONS, COMPANY_TYPE_OPTIONS } from "@/constant";
 import CustomSelect from "@/components/ui/select/custom-select";
 import { CustomMultiSelect } from "@/components/ui/multi-select/custom-multi-select";
+import { CardWrapper } from "../card-wrapper";
 
 export interface CompanyDetailsCardProps {
   agreement: string;
@@ -68,13 +68,12 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
     setIsEditing(false);
   };
 
-
   const handleBusinessEntityChange = (selectedValue: string) => {
     setEditBusinessEntity(selectedValue);
   };
 
   return (
-    <Card
+    <CardWrapper
       title="Company Details"
       actions={
         !isEditing
@@ -169,6 +168,6 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
           <InfoRow label="Company type:" value={editCompanyTypes.join(", ")} />
         </div>
       )}
-    </Card>
+    </CardWrapper>
   );
 };

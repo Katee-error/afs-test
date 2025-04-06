@@ -3,7 +3,6 @@ import { Poppins } from "next/font/google";
 import "./../styles/global.scss";
 import { Menu } from "@/components";
 
-
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],

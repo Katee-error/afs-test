@@ -1,8 +1,8 @@
-import React, { FC, ReactNode } from 'react';
-import styles from './Card.module.scss';
+import React, { FC, ReactNode } from "react";
+import styles from "./Card.module.scss";
 
 interface CardAction {
-  icon: ReactNode;   
+  icon: ReactNode;
   label?: string;
   onClick?: () => void;
 }
@@ -14,8 +14,7 @@ interface CardProps {
   editingActions?: React.ReactNode;
 }
 
-
-const Card: FC<CardProps> = ({ title, children, actions, editingActions }) => {
+export const CardWrapper: FC<CardProps> = ({ title, children, actions, editingActions }) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
@@ -35,16 +34,11 @@ const Card: FC<CardProps> = ({ title, children, actions, editingActions }) => {
             ))}
           </div>
         )}
-         {editingActions && (
-        <div className={styles.cardEditingActions}>
-          {editingActions}
-        </div>
-      )}
+        {editingActions && (
+          <div className={styles.cardEditingActions}>{editingActions}</div>
+        )}
       </div>
       <div className={styles.cardBody}>{children}</div>
-      
-    </div>   
+    </div>
   );
 };
-
-export default Card;

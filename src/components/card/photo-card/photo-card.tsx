@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./PhotoCard.module.scss";
 import Image from "next/image";
-import Card from "../card-wrapper/card";
+import { CardWrapper } from "../card-wrapper/card";
 import addIcon from "./../../../../public/assets/icons/Add Photo.svg";
 import { AddPhotoDialog } from "@/components/modal/dialog/add-photo";
 
@@ -40,7 +40,7 @@ export const PhotosCard: React.FC<PhotosCardProps> = ({
   };
   return (
     <>
-      <Card
+      <CardWrapper
         title="Photos"
         actions={[
           {
@@ -64,7 +64,7 @@ export const PhotosCard: React.FC<PhotosCardProps> = ({
             </div>
           ))}
         </div>
-      </Card>
+      </CardWrapper>
       {isModalOpen && (
         <AddPhotoDialog
           isOpen={true}
