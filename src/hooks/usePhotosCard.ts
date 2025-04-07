@@ -1,4 +1,4 @@
-'use client'
+// usePhotosCard.ts
 import { useState } from "react";
 
 export interface Photo {
@@ -7,12 +7,17 @@ export interface Photo {
   alt: string;
 }
 
-export const usePhotosCard = (defaultPhotos: Photo[]) => {
+export function usePhotosCard(defaultPhotos: Photo[]) {
   const [photos, setPhotos] = useState<Photo[]>(defaultPhotos);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddClick = () => setIsModalOpen(true);
-  const handleModalClose = () => setIsModalOpen(false);
+  const handleAddClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   const handlePhotoAdd = (file: File) => {
     const newPhoto: Photo = {
@@ -24,5 +29,16 @@ export const usePhotosCard = (defaultPhotos: Photo[]) => {
     setIsModalOpen(false);
   };
 
-  return { photos, isModalOpen, handleAddClick, handleModalClose, handlePhotoAdd };
-};
+  const handleRemovePhoto = (photoId: string) => {
+    setPhotos((prevPhotos) => prevPhotos.filter((photo) => photo.id !== photoId));
+  };
+
+  return {
+    photos,
+    isModalOpen,
+    handleAddClick,
+    handleModalClose,
+    handlePhotoAdd,
+    handleRemovePhoto,
+  };
+}

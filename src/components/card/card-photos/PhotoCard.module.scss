@@ -1,13 +1,35 @@
 .photoGrid {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.photoItem {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 144px;
+  height: 108px;
+}
+
+.removeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
   }
-  
-  .photoItem {
-    border-radius: 8px;
-    overflow: hidden;
-    width: 144px; 
-    height: 108px;
-  }
-  
+}
