@@ -1,4 +1,57 @@
-@use "./../.././../styles/variables" as *;
+@use "./../../styles/variables" as *;
+
+.card {
+    background-color: $background-color;
+    border-radius: $border-radius-card;
+    padding: 24px;
+    width: 640px;
+    box-shadow: $box-shadow-card-color;
+  }
+  
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .cardTitle {
+    font-size: $font-size-base;
+    color: $primary-color;
+    font-weight: 700;
+    line-height: $line-height-base;
+    letter-spacing: 0.02em;
+  }
+  
+  .cardActions {
+    display: flex;
+    cursor: pointer;
+    border: 1px solid $border-outline-regular-button;
+    border-radius: 8px;
+    padding: 6px;
+    min-width: 71px;
+    height: 28px;
+  }
+  
+  .iconButton {
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+  
+    span {
+      font-size: $font-size-xs;
+      font-weight: 600;
+      line-height: $line-height-flattened-button;
+      letter-spacing: 0.04em;
+    }
+  }
+  
+  
 
 .infoRow {
   display: flex;
@@ -125,31 +178,3 @@
   }
 }
 
-.editingActions {
-  display: flex;
-  gap: 12px;
-  align-self: end;
-}
-
-.saveButton,
-.cancelButton {
-  display: flex;
-  cursor: pointer;
-  border: 1px solid $border-outline-regular-button;
-  border-radius: 8px;
-  padding: 6px;
-  min-width: 71px;
-  height: 28px;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-  transition: background-color 0.2s;
-  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
-
-  span {
-    font-size: $font-size-xs;
-    font-weight: 600;
-    line-height: $line-height-flattened-button;
-    letter-spacing: 0.04em;
-  }
-}

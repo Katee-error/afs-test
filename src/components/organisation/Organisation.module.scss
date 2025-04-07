@@ -40,11 +40,13 @@
 
 .organisation_icon_edit {
   filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+  cursor: pointer;
 }
 
 .organisation_icon_delete {
   filter: invert(34%) sepia(96%) saturate(5914%) hue-rotate(359deg) brightness(90%) contrast(88%);
   transition: filter 0.2s;
+   cursor: pointer;
 }
 
 .errorMessage {

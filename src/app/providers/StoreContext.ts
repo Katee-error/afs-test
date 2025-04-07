@@ -1,8 +1,8 @@
-import { organizationStore } from "@/stores/organisationStore";
 import { createContext, useContext } from "react";
+import { OrganizationStore } from "@/stores/organisationStore";
 
 export const store = {
-  organizationStore,
+  organizationStore: new OrganizationStore(),
 };
 
 export const StoreContext = createContext(store);

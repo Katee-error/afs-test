@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-class OrganizationStore {
+export class OrganizationStore {
   orgData: any = null;
   contactData: any = null;
   token: string | null = null;
@@ -28,4 +28,3 @@ class OrganizationStore {
   };
 }
 
-export const organizationStore = new OrganizationStore();

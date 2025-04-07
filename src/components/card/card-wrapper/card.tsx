@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import styles from "./Card.module.scss";
+import styles from "./../Card.module.scss";
 
 interface CardAction {
   icon: ReactNode;

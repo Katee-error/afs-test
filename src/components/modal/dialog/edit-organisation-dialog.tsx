@@ -1,53 +1,30 @@
-import React, { useEffect, useState } from "react";
+'use client';
+import React from "react";
 import { observer } from "mobx-react-lite";
-import styles from "./../Modal.module.scss";
+import styles from "../Modal.module.scss";
 import { Modal } from "../modal";
+import { useEditOrganization } from "@/hooks/useEditOrganization";
 import { useStore } from "@/app/providers/StoreContext";
-import { updateOrganization } from "@/api/organisations";
+
 interface EditOrganizationDialogProps {
   isOpen: boolean;
   onClose: () => void;
   currentName: string;
+  orgId: string;
   onSave: (newName: string) => void;
 }
 
-export const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> =
-  observer(({ isOpen, onClose, currentName, onSave }) => {
-    const [newName, setNewName] = useState(currentName);
-    const [isSaving, setIsSaving] = useState(false);
+export const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> = observer(
+  ({ isOpen, onClose, currentName, orgId, onSave }) => {
     const { organizationStore } = useStore();
 
-    useEffect(() => {
-      setNewName(currentName);
-      organizationStore.setTempName(currentName);
-    }, [currentName, organizationStore]);
+    const { tempName, isSaving, handleChange, handleSubmit } = useEditOrganization(
+      { currentName, orgId, onClose, onSave },
+      organizationStore
+    );
+    
 
     if (!isOpen) return null;
-
-    const handleSubmit = async () => {
-      try {
-        setIsSaving(true);
-        const payload = { name: newName };
-        const updated = await updateOrganization(
-          organizationStore.orgData.id,
-          payload
-        );
-        organizationStore.setOrgData(updated);
-        organizationStore.setTempName("");
-        onSave(newName);
-      } catch (error) {
-        console.error("Error when updating the organization:", error);
-      } finally {
-        setIsSaving(false);
-        onClose();
-      }
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setNewName(value);
-      organizationStore.setTempName(value);
-    };
 
     return (
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -55,19 +32,20 @@ export const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> =
           <h2>Specify the Organization’s name</h2>
           <input
             type="text"
-            value={newName}
+            value={tempName}
             onChange={handleChange}
             className={styles.input}
           />
           <div className={styles.buttons}>
-            <button onClick={onClose} className={styles.noBtn}>
+            <button onClick={onClose} className={styles.noBtn} disabled={isSaving}>
               Cancel
             </button>
-            <button onClick={handleSubmit} className={styles.yesBtn}>
-              Save changes
+            <button onClick={handleSubmit} className={styles.yesBtn} disabled={isSaving}>
+              {isSaving ? "Saving..." : "Save changes"}
             </button>
           </div>
         </div>
       </Modal>
     );
-  });
+  }
+);

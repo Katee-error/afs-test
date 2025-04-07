@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./../styles/global.scss";
 import { Menu } from "@/components";
+import { MobxProvider } from "./providers/MobxProvider";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -21,10 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+      <MobxProvider>
         <div className="layout">
           <Menu />
-          <main className="content"> {children}</main>
+          <main className="content">{children}</main>
         </div>
+        </MobxProvider>
       </body>
     </html>
   );

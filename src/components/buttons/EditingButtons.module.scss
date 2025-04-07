@@ -1,0 +1,31 @@
+@use "./../../styles/variables" as *;
+
+.editingActions {
+    display: flex;
+    gap: 12px;
+    align-self: end;
+  }
+  
+  .saveButton,
+  .cancelButton {
+    display: flex;
+    cursor: pointer;
+    border: 1px solid $border-outline-regular-button;
+    border-radius: 8px;
+    padding: 6px;
+    min-width: 71px;
+    height: 28px;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    transition: background-color 0.2s;
+    filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+  
+    span {
+      font-size: $font-size-xs;
+      font-weight: 600;
+      line-height: $line-height-flattened-button;
+      letter-spacing: 0.04em;
+    }
+  }
+  

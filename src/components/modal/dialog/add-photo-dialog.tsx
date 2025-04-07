@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./../Modal.module.scss";
 import { Modal } from "../modal";
+import { usePhotoUpload } from "@/hooks/useUploadPhoto";
 
 interface AddPhotoDialogProps {
   onClose: () => void;
@@ -13,25 +14,15 @@ export const AddPhotoDialog: React.FC<AddPhotoDialogProps> = ({
   isOpen,
   onPhotoAdd,
 }) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setSelectedFile(file);
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
-    }
-  };
+  const { selectedFile, previewUrl, handleFileChange, reset } = usePhotoUpload();
 
   const handleUpload = () => {
     if (selectedFile) {
       onPhotoAdd(selectedFile);
-      setSelectedFile(null);
-      setPreviewUrl(null);
+      reset();
     }
   };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={styles.editDialog}>
@@ -59,8 +50,14 @@ export const AddPhotoDialog: React.FC<AddPhotoDialogProps> = ({
           </div>
         )}
         <div className={styles.buttons}>
-          <button onClick={onClose} className={styles.noBtn}>Cancel</button>
-          <button onClick={handleUpload} disabled={!selectedFile} className={styles.yesBtn}>
+          <button onClick={onClose} className={styles.noBtn}>
+            Cancel
+          </button>
+          <button
+            onClick={handleUpload}
+            disabled={!selectedFile}
+            className={styles.yesBtn}
+          >
             Upload
           </button>
         </div>
