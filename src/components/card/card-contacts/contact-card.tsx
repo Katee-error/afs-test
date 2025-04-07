@@ -1,13 +1,15 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { InfoRow } from "../card-info-row/card-info-row";
 import editIcon from "./../../../../public/assets/icons/Edit.svg";
 import styles from "./../Card.module.scss";
 import { CardWrapper } from "../card-wrapper";
-
 import { EditingButtons } from "@/components/buttons/editing-buttons";
 import { useEditableContact } from "@/hooks";
 import { ContactData } from "@/hooks/useEditableContact";
+import { formatPhoneNumber } from "@/utils/phoneFormat";
+
 
 interface ContactsCardProps extends ContactData {
   onSave?: (updatedData: ContactData) => void;
@@ -90,7 +92,10 @@ export const ContactsCard: React.FC<ContactsCardProps> = ({
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <InfoRow label="Responsible person:" value={values.personName} />
-          <InfoRow label="Phone number:" value={values.phoneNumber} />
+          <InfoRow
+            label="Phone number:"
+            value={formatPhoneNumber(values.phoneNumber)}
+          />
           <InfoRow label="E-mail:" value={values.email} />
         </div>
       )}

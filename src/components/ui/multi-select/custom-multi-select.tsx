@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import styles from "./CustomMultiSelect.module.scss";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { formatLabel } from "@/utils/format";
+import { formatLabel } from "@/utils/formatLabel";
 
 export interface MultiSelectOption {
   value: string;
@@ -10,7 +10,7 @@ export interface MultiSelectOption {
 
 interface CustomMultiSelectProps {
   options: MultiSelectOption[];
-  value: string[]; 
+  value: string[];
   onChange: (selected: string[]) => void;
   placeholder?: string;
 }
@@ -25,18 +25,18 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
 
   const transformedOptions = useMemo(
     () =>
-      options.map(option => ({
+      options.map((option) => ({
         ...option,
         label: formatLabel(option.label),
       })),
     [options]
   );
 
-  const toggleOpen = () => setIsOpen(prev => !prev);
+  const toggleOpen = () => setIsOpen((prev) => !prev);
 
   const handleToggleOption = (optionValue: string) => {
     if (value.includes(optionValue)) {
-      onChange(value.filter(v => v !== optionValue));
+      onChange(value.filter((v) => v !== optionValue));
     } else {
       onChange([...value, optionValue]);
     }
@@ -44,16 +44,18 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const selectedOptions = transformedOptions.filter(option =>
+  const selectedOptions = transformedOptions.filter((option) =>
     value.includes(option.value)
   );
 
@@ -62,7 +64,7 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
       <div className={styles.control} onClick={toggleOpen}>
         <span className={styles.value}>
           {selectedOptions.length > 0
-            ? selectedOptions.map(opt => opt.label).join(", ")
+            ? selectedOptions.map((opt) => opt.label).join(", ")
             : placeholder}
         </span>
         <span className={styles.arrow}>
@@ -71,7 +73,7 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
       </div>
       {isOpen && (
         <div className={styles.menu}>
-          {transformedOptions.map(option => (
+          {transformedOptions.map((option) => (
             <label key={option.value} className={styles.option}>
               <input
                 type="checkbox"
@@ -88,4 +90,3 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
     </div>
   );
 };
-
