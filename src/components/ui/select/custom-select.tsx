@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./CustomSelect.module.scss";
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export interface Option {
   value: string;
@@ -13,7 +13,11 @@ interface CustomSelectProps {
   onChange: (value: string) => void;
 }
 
-const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange }) => {
+const CustomSelect: React.FC<CustomSelectProps> = ({
+  options,
+  value,
+  onChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +30,10 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange })
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -38,11 +45,16 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ options, value, onChange })
 
   return (
     <div className={styles.customSelect} ref={selectRef}>
-      <div className={styles.control} onClick={toggleOpen}>
+      <div
+        className={`${styles.control} ${isOpen ? styles.active : ""}`}
+        onClick={toggleOpen}
+      >
         <span className={styles.value}>
-          {selectedOption ? selectedOption.label : "Select an option" }
+          {selectedOption ? selectedOption.label : "Select an option"}
         </span>
-        <span className={styles.arrow}>{isOpen ? <ChevronUp/> : <ChevronDown />}</span>
+        <span className={styles.arrow}>
+          {isOpen ? <ChevronUp /> : <ChevronDown />}
+        </span>
       </div>
       {isOpen && (
         <div className={styles.menu}>

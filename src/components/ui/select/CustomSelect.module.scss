@@ -1,3 +1,5 @@
+@use './../../../styles/variables' as *;
+
 .customSelect {
     position: relative;
     width: 100%;
@@ -9,17 +11,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid $border-selector-regular-color;
     border-radius: 8px;
     padding: 8px 12px;
     background-color: #fff;
     cursor: pointer;
     transition: border-color 0.2s;
+
+    &:hover {
+      border: 1px solid $border-selector-hovered-color;
+    }
   }
   
-  .control:hover {
-    border-color: rgba(0, 0, 0, 0.5);
-  }
+  .active {
+    border-color: $border-selector-focused-color;
+   }
   
   .value {
     flex: 1;

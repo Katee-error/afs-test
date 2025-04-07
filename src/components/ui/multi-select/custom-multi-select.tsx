@@ -61,7 +61,10 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
 
   return (
     <div className={styles.customMultiSelect} ref={containerRef}>
-      <div className={styles.control} onClick={toggleOpen}>
+      <div
+        className={`${styles.control} ${isOpen ? styles.active : ""}`}
+        onClick={toggleOpen}
+      >
         <span className={styles.value}>
           {selectedOptions.length > 0
             ? selectedOptions.map((opt) => opt.label).join(", ")
