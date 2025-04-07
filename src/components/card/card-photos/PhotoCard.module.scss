@@ -1,3 +1,5 @@
+@use './../../../styles/variables' as *;
+
 .photoGrid {
   display: flex;
   gap: 20px;
@@ -19,8 +21,8 @@
   width: 28px;
   height: 28px;
   border: none;
-  background: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.12);
+  background: $primary-color;
+  box-shadow: $box-shadow-card-color;
   border-radius: 8px;
   cursor: pointer;
   padding: 4px;
@@ -30,6 +32,9 @@
   justify-content: center;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.7);
+    background: $background-filled-hovered-button;
+  }
+  &:active {
+    background: $background-filled-click-button;
   }
 }

@@ -1,158 +1,117 @@
-
-
 @import 'variables';
 
-// ===================================
-// БАЗОВЫЕ СТИЛИ КНОПОК
-// ===================================
 @mixin button-base {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: $font-family-base;
-  font-size: $font-size-small;
-  line-height: $line-height;
+  display: flex;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-  padding: $spacing-unit * 1.5 $spacing-unit * 2; // Можно подкорректировать под макет
-}
-
-// ===================================
-// FILLED BUTTON
-//  - Regular, Hovered, Clicked (Active)
-// ===================================
-@mixin button-filled {
-  @include button-base;
-  background-color: #333333; // Regular BG
-  color: #ffffff;            // Regular text
-  border: none;
+  border: 1px solid $border-outline-regular-button;
+  border-radius: $border-radius-input; 
+  padding: 6px;
+  min-width: 71px;
+  height: 28px;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  transition: background-color 0.2s;
+  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 $brand-primary-color); 
 
   &:hover {
-    background-color: #555555; // Hover BG
+    border-color: $border-outline-hovered-button;
+    color: $brand-secondary-color;
   }
-
-  &:active {
-    background-color: #000000; // Active BG
-  }
-}
-
-// ===================================
-// OUTLINE BUTTON
-//  - Regular, Hovered, Clicked (Active)
-// ===================================
-@mixin button-outline {
-  @include button-base;
-  background-color: transparent;
-  color: #666666;          // Цвет текста в обычном состоянии
-  border: 1px solid #666666;
-
-  &:hover {
-    border-color: #8b50ff; // Пример: hover фиолетовый
-    color: #8b50ff;
-  }
-
-  &:active {
-    border-color: #3d0099; // Пример: более тёмный при клике
-    color: #3d0099;
-  }
-}
-
-// ===================================
-// FLATTENED BUTTON
-//  - Regular, Hovered, Clicked (Active)
-//  (Кнопка без фона и без рамки)
-// ===================================
-@mixin button-flattened {
-  @include button-base;
-  background-color: transparent;
-  border: none;
-  color: #666666; // Regular
-
-  &:hover {
-    color: #8b50ff; // Hover
-  }
-
-  &:active {
-    color: #3d0099; // Active
-  }
-}
-
-// ===================================
-// ICON BUTTON
-//  - Regular, Hovered, Clicked (Active)
-//  (Кнопка только с иконкой, без текста)
-// ===================================
-@mixin button-icon($size: 40px) {
-  @include button-base;
-  width: $size;
-  height: $size;
-  background-color: transparent;
-  border: none;
-  color: #666666;
-
-  // Убираем внутренние отступы, центрируем иконку
-  padding: 0;
-
-  &:hover {
-    color: #8b50ff;
-  }
-
-  &:active {
-    color: #3d0099;
-  }
-}
-
-// ===================================
-// БАЗОВЫЕ СТИЛИ ПОЛЯ ВВОДА
-// ===================================
-@mixin input-base {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  color: $primary-color;         // #1A1A1A или другой
-  border-radius: 4px;
-  padding: $spacing-unit * 1.5 $spacing-unit * 2;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  border: 1px solid $border-color; // #dddddd
-  width: 100%;
-  box-sizing: border-box;
-}
-
-// Состояния: regular, hovered, focused
-@mixin input-states {
-  // Hovered
-  &:hover {
-    border-color: darken($border-color, 5%); // или конкретный цвет
-  }
-
-  // Focused
   &:focus {
     outline: none;
-    border-color: #00aeef; // голубой, как в макете
-    box-shadow: 0 0 0 2px rgba(#00aeef, 0.2);
+    border-color: $border-outline-click-button;
+    color: $brand-secondary-color;
+  }
+
+}
+
+@mixin input-field {
+  border: 1px solid $border-input-regular-color;
+  border-radius: $border-radius-input;
+  padding: 10px 12px;
+  height: 40px;
+  font-weight: 400;
+  font-size: $font-size-base; 
+  line-height: $line-height-base;
+  letter-spacing: 0.02em;
+  color: $primary-color;
+  flex: 1;
+  width: 100%;
+  &:hover {
+    border-color: $border-input-hovered-color;
+  }
+  &:focus {
+    outline: none;
+    border-color: $border-input-focused-color;
   }
 }
 
-// Комбинируем базу и состояния
-@mixin input {
-  @include input-base;
-  @include input-states;
+@mixin icon-wrapper-sidebar {
+  border-radius: $border-radius-input; 
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-regular-side-menu;
+  transition: background-color 0.2s;
+  &:hover {
+    background-color: $bg-hovered-side-menu;
+  }
+  &:active {
+    background-color: $bg-selected-side-menu;
+  }
 }
 
-// ===================================
-// SELECTOR
-//  (Regular, Hovered, Focused)
-//  Аналогичен input, но с иконкой для стрелки
-// ===================================
-@mixin selector {
-  @include input-base;
-  @include input-states;
+@mixin modal-input {
+  border: 1px solid $border-input-regular-color;
+  border-radius: $border-radius-input;
+  padding: 8px;
+  font-weight: 400;
+  font-size: $font-size-base;   
+  line-height: $line-height-base;
+  letter-spacing: 0.02em;
+  color: $primary-color;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border-color: $border-input-focused-color;
+  }
+}
 
-  // Добавляем иконку для стрелки
-  background: url('/icons/chevron-down.svg') no-repeat right 1rem center / 16px;
-  appearance: none; // Скрываем стандартную стрелку
-  // Для Safari
-  &::-webkit-calendar-picker-indicator {
-    display: none;
+@mixin modal-button {
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-base;
+  border: 1px solid $border-outline-regular-button;
+  border-radius: $border-radius-input;
+  padding: 10px 12px;
+  width: 148px;
+  height: 40px;
+}
+
+@mixin flex-column($gap: 16px, $align-items: null, $justify-content: null) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  @if $align-items {
+    align-items: $align-items;
+  }
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+}
+
+@mixin flex-row($gap: 10px, $align-items: null, $justify-content: null) {
+  display: flex;
+  flex-direction: row;
+  gap: $gap;
+  @if $align-items {
+    align-items: $align-items;
+  }
+  @if $justify-content {
+    justify-content: $justify-content;
   }
 }

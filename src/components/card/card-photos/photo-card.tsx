@@ -1,9 +1,9 @@
-// PhotosCard.tsx
+
 import styles from "./PhotoCard.module.scss";
 import Image from "next/image";
 import { CardWrapper } from "../card-wrapper/card";
 import addIcon from "./../../../../public/assets/icons/Add Photo.svg";
-import trashIcon from "./../../../../public/assets/icons/Trash.svg"; // добавьте иконку удаления
+import trashIcon from "./../../../../public/assets/icons/Trash.svg"; 
 import { AddPhotoDialog } from "@/components/modal/dialog/add-photo-dialog";
 import { usePhotosCard, Photo } from "@/hooks/usePhotosCard";
 

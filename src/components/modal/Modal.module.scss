@@ -1,70 +1,58 @@
 @use './../../styles/variables' as *;
+@use './../../styles/mixins' as mixins;
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.4); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  
-  .modal {
-    background: #fff;
-    border-radius: 8px;
-    padding: 24px;
-    min-width: 320px;
-    max-width: 90vw;
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.12);
-  }
-  
-  .editDialog,
-  .removeDialog {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: $background-color;
+  border-radius: $border-radius-input; 
+  padding: 24px;
+  min-width: 320px;
+  max-width: 90vw;
+  box-shadow: $box-shadow-card-color;
+}
+
+.editDialog,
+.removeDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 
   h2 {
     font-weight: 700;
-    font-size: 14px;
-    line-height: 171%;
+    font-size: $font-size-base; 
+    line-height: $line-height-base;
     letter-spacing: 0.02em;
     text-align: center;
-    color: rgba(0, 0, 0, 0.8);
+    color: $primary-color; 
   }
 
   p {
     font-weight: 400;
-    font-size: 13px;
-    line-height: 154%;
+    font-size: $font-size-md;
+    line-height: $line-height-md; 
     letter-spacing: 0.02em;
     text-align: center;
     width: 80%;
-    color: rgba(0, 0, 0, 0.8);
+    color: $primary-color; 
   }
 
   .input {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 8px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 171%;
-    letter-spacing: 0.02em;
-    color: rgba(0, 0, 0, 0.8);
-    width: 100%;
-
-    &:focus {
-      outline: none;
-      border-color: #35cdfd;
-    }
+    @include mixins.modal-input;
   }
 
   .buttons {
@@ -73,14 +61,7 @@
     gap: 16px;
 
     button {
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      padding: 10px 12px;
-      width: 148px;
-      height: 40px;
+      @include mixins.modal-button;
     }
 
     .noBtn {
@@ -88,43 +69,41 @@
     }
 
     .yesBtn {
-      background-color: #3b3b3b;
-      color: #fff;
-      box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.12);
+      background-color: $brand-primary-color;
+      color: $light-color-button-text;
+      box-shadow: $box-shadow-card-color;
     }
   }
-  }
+}
 
-  .customFileInput {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  
-  .uploadButton {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: $primary-color;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 14px;
-    
-  }
-  
-  .previewContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .previewImage {
-    max-width: 600px;
-    max-height: 500px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-  
+.customFileInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.uploadButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: $primary-color;
+  color: $light-color-button-text;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: $font-size-base;
+}
+
+.previewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.previewImage {
+  max-width: 600px;
+  max-height: 500px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}

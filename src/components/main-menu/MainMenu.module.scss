@@ -1,8 +1,9 @@
 @use "./../../styles//variables" as *;
+@use "./../../styles//mixins" as mixins;
 
 .main_menu {
   padding: 20px 6px;
-  width: 48px;
+  width: $sidebar-mini-width; 
   height: 100vh;
   background: $background-mini-sidebar-color;
   display: flex;
@@ -35,19 +36,5 @@
 }
 
 .icon_wrapper {
-  border-radius: 8px;
-  padding: 8px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: $bg-regular-side-menu;
-  &:hover {
-    background-color: $bg-hovered-side-menu;
-  }
-
-  &:active {
-    background-color: $bg-selected-side-menu;
-  }
+  @include mixins.icon-wrapper-sidebar;
 }

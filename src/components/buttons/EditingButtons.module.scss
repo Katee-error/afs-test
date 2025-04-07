@@ -1,4 +1,5 @@
 @use "./../../styles/variables" as *;
+@use "./../../styles/mixins" as mixins;
 
 .editingActions {
     display: flex;
@@ -8,19 +9,8 @@
   
   .saveButton,
   .cancelButton {
-    display: flex;
-    cursor: pointer;
-    border: 1px solid $border-outline-regular-button;
-    border-radius: 8px;
-    padding: 6px;
-    min-width: 71px;
-    height: 28px;
-    align-items: center;
-    gap: 10px;
-    justify-content: center;
-    transition: background-color 0.2s;
-    filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
-  
+    @include mixins.button-base;
+
     span {
       font-size: $font-size-xs;
       font-weight: 600;

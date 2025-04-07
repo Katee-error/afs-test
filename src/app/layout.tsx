@@ -21,12 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
-      <MobxProvider>
-        <div className="layout">
+      <body
+        className={poppins.className}
+        style={{ display: "flex", height: "100vh", flexDirection: "row" }}
+      >
+        <MobxProvider>
           <Menu />
-          <main className="content">{children}</main>
-        </div>
+          <main style={{ flex: "1" }}>{children}</main>
         </MobxProvider>
       </body>
     </html>

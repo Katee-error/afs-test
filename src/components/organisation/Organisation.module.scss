@@ -1,26 +1,19 @@
 @use "./../../styles/variables" as *;
-
+@use "./../../styles/mixins" as mixins;
 .organisation {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  @include mixins.flex-column(16px);
 }
 
 .organisation_container {
   padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  gap: 32px;
+  @include mixins.flex-column(32px, center);
   width: 100%;
   margin: 0 auto;
 }
 
 .organisation_header {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include mixins.flex-row(0, center, space-between);
 }
 
 .organisation_title {
@@ -33,20 +26,18 @@
 }
 
 .organisation_icons_group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  @include mixins.flex-row(10px, center);
 }
 
 .organisation_icon_edit {
-  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 $brand-primary-color);
   cursor: pointer;
 }
 
 .organisation_icon_delete {
   filter: invert(34%) sepia(96%) saturate(5914%) hue-rotate(359deg) brightness(90%) contrast(88%);
   transition: filter 0.2s;
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .errorMessage {

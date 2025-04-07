@@ -1,18 +1,18 @@
 @use "./../../styles//variables" as *;
+@use "./../../styles//mixins" as mixins;
 
 .sidebar {
   width: $sidebar-width;
   height: 100vh;
   background-color: $background-color;
   box-shadow: $box-shadow-sidebar-color;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include mixins.flex-column(0, null, space-between);
   padding: 20px;
 }
 
 .brand {
   color: $primary-color;
+  
   h2 {
     font-size: $font-size-base;
     font-weight: 700;
@@ -28,27 +28,39 @@
 .drawer {
   border: 1px solid $drawer-border-color;
   width: 210px;
-  height: 0px;
+  height: 0;
   margin: 20px 0;
 }
 
 .navLink {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center; // текст по центру
-  height: 48px; // задаем фиксированную высоту
-  padding-left: 48px; // чтобы текст не налезал на иконку
-  font-size: 14px;
+  @include mixins.flex-row(0, center, center);
+  height: 48px;
+  padding-left: 48px;
+  font-size: $font-size-base;
   font-weight: 500;
   text-decoration: none;
   color: $primary-color;
   transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $background-filled-hovered-button;
+  }
+  &:active {
+    background-color: $background-filled-click-button;
+  }
 }
 
 .nav li.active .navLink {
   background-color: $background-filled-regular-button;
   font-weight: 600;
+
+  &:hover {
+    background-color: $background-filled-hovered-button;
+  }
+  &:active {
+    background-color: $background-filled-click-button;
+  }
 }
 
 .navLink img {
@@ -60,10 +72,9 @@
 
 .nav {
   flex: 1;
+
   ul {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    @include mixins.flex-column(12px);
   }
 
   li {
@@ -92,7 +103,7 @@
 }
 
 .darkIcon {
-  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 #3b3b3b);
+  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 $brand-primary-color);
   transition: filter 0.2s;
 }
 
