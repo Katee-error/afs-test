@@ -1,11 +1,10 @@
-@import "variables";
+@use './variables' as *;
 
 @mixin button-base {
   display: flex;
   align-items: center;
   padding: 6px;
   cursor: pointer;
-  color: $brand-primary-color;
   border: 1px solid $border-outline-regular-button;
   min-width: 70px;
   height: 28px;
