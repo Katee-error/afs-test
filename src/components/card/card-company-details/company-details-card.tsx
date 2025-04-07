@@ -13,6 +13,7 @@ import {
 import { EditingButtons } from "@/components/buttons/editing-buttons";
 import { useEditableCompanyDetails } from "@/hooks";
 import { useStore } from "@/app/providers/StoreContext";
+import { formatLabel } from "@/utils/format";
 
 export interface CompanyDetailsCardProps {
   agreement: string;
@@ -52,9 +53,9 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
   );
 
   const displayCompanyTypes =
-    values.companyTypes.length > 0
-      ? values.companyTypes.join(", ")
-      : "No types selected";
+  values.companyTypes.length > 0
+    ? values.companyTypes.map(formatLabel).join(", ")
+    : "No types selected";
 
   return (
     <CardWrapper

@@ -11,13 +11,17 @@ interface EditingButtonsProps {
 
 export const EditingButtons: React.FC<EditingButtonsProps> = ({ onSave, onCancel }) => (
   <div className={styles.editingActions}>
-    <button className={styles.saveButton} onClick={onSave}>
-      <Image src={checkIcon} alt="Save Icon" width={16} height={16} />
-      <span>Save changes</span>
-    </button>
-    <button className={styles.cancelButton} onClick={onCancel}>
-      <Image src={closeIcon} alt="Cancel Icon" width={16} height={16} />
-      <span>Cancel</span>
-    </button>
+    <div className={styles.saveButtonWrapper} onClick={onSave}>
+      <button className={styles.saveButton}>
+        <Image src={checkIcon} alt="Save Icon" width={16} height={16} />
+        <span>Save changes</span>
+      </button>
+    </div>
+    <div className={styles.cancelButtonWrapper} onClick={onCancel}>
+      <button className={styles.cancelButton}>
+        <Image src={closeIcon} alt="Cancel Icon" width={16} height={16} />
+        <span>Cancel</span>
+      </button>
+    </div>
   </div>
 );

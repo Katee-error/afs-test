@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import styles from "./CustomMultiSelect.module.scss";
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { formatLabel } from "@/utils/format";
 
 export interface MultiSelectOption {
   value: string;
@@ -13,23 +14,31 @@ interface CustomMultiSelectProps {
   onChange: (selected: string[]) => void;
   placeholder?: string;
 }
-
 export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
   options,
   value,
   onChange,
-  placeholder,
+  placeholder = "Select options",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const transformedOptions = useMemo(
+    () =>
+      options.map(option => ({
+        ...option,
+        label: formatLabel(option.label),
+      })),
+    [options]
+  );
 
-  const handleToggleOption = (optionLabel: string) => {
-    if (value.includes(optionLabel)) {
-      onChange(value.filter((v) => v !== optionLabel));
+  const toggleOpen = () => setIsOpen(prev => !prev);
+
+  const handleToggleOption = (optionValue: string) => {
+    if (value.includes(optionValue)) {
+      onChange(value.filter(v => v !== optionValue));
     } else {
-      onChange([...value, optionLabel]);
+      onChange([...value, optionValue]);
     }
   };
 
@@ -40,11 +49,12 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const selectedOptions = options.filter((option) =>
-    value.includes(option.label)
+  const selectedOptions = transformedOptions.filter(option =>
+    value.includes(option.value)
   );
 
   return (
@@ -52,30 +62,30 @@ export const CustomMultiSelect: React.FC<CustomMultiSelectProps> = ({
       <div className={styles.control} onClick={toggleOpen}>
         <span className={styles.value}>
           {selectedOptions.length > 0
-            ? selectedOptions.map((opt) => opt.label).join(", ")
+            ? selectedOptions.map(opt => opt.label).join(", ")
             : placeholder}
         </span>
-        <span className={styles.arrow}>{isOpen ? <ChevronUp/> : <ChevronDown />}</span>
+        <span className={styles.arrow}>
+          {isOpen ? <ChevronUp /> : <ChevronDown />}
+        </span>
       </div>
       {isOpen && (
         <div className={styles.menu}>
-          {options.map((option) => (
+          {transformedOptions.map(option => (
             <label key={option.value} className={styles.option}>
-            <input
-              type="checkbox"
-              className={styles.checkbox}
-              checked={value.includes(option.label)}
-              onChange={() => handleToggleOption(option.label)}
-              placeholder={option.label}
-            />
-            <span className={styles.checkboxBox}></span>
-            <span className={styles.optionLabel}>{option.label}</span>
-          </label>
+              <input
+                type="checkbox"
+                className={styles.checkbox}
+                checked={value.includes(option.value)}
+                onChange={() => handleToggleOption(option.value)}
+              />
+              <span className={styles.checkboxBox}></span>
+              <span className={styles.optionLabel}>{option.label}</span>
+            </label>
           ))}
         </div>
       )}
     </div>
   );
 };
-
 

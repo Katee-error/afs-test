@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, {  ReactNode } from "react";
 import styles from "./../Card.module.scss";
 
 interface CardAction {
@@ -14,13 +14,13 @@ interface CardProps {
   editingActions?: React.ReactNode;
 }
 
-export const CardWrapper: FC<CardProps> = ({ title, children, actions, editingActions }) => {
+export const CardWrapper: React.FC<CardProps> = ({ title, children, actions, editingActions }) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>{title}</h3>
         {actions && actions.length > 0 && (
-          <div className={styles.cardActions}>
+          <div className={styles.cardActions} >
             {actions.map((action, index) => (
               <button
                 key={index}
