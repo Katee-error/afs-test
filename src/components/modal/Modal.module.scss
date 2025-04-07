@@ -66,12 +66,18 @@
 
     .noBtn {
       background-color: transparent;
+      &:hover {
+        border-color: $border-outline-hovered-button;
+      }
     }
 
     .yesBtn {
       background-color: $brand-primary-color;
       color: $light-color-button-text;
       box-shadow: $box-shadow-card-color;
+      &:hover {
+        background-color: $background-filled-hovered-button;
+      }
     }
   }
 }
@@ -80,11 +86,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   margin-bottom: 16px;
 }
 
 .uploadButton {
   display: inline-block;
+  width: 100%;
   padding: 10px 20px;
   background-color: $primary-color;
   color: $light-color-button-text;

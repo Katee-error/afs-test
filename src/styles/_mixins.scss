@@ -1,29 +1,29 @@
-@import 'variables';
+@import "variables";
 
 @mixin button-base {
   display: flex;
-  cursor: pointer;
-  border: 1px solid $border-outline-regular-button;
-  border-radius: $border-radius-input; 
-  padding: 6px;
-  min-width: 71px;
-  height: 28px;
   align-items: center;
-  gap: 10px;
-  justify-content: center;
-  transition: background-color 0.2s;
-  filter: brightness(0) saturate(100%) drop-shadow(0 0 0 $brand-primary-color); 
+  padding: 6px;
+  cursor: pointer;
+  color: $brand-primary-color;
+  border: 1px solid $border-outline-regular-button;
+  min-width: 70px;
+  height: 28px;
+  border-radius: 8px;
+  transition: color 0.2s;
+  justify-content: space-around;
+  gap: 8px;
 
-  &:hover {
-    border-color: $border-outline-hovered-button;
-    color: $brand-secondary-color;
-  }
+  &:hover,
   &:focus {
-    outline: none;
-    border-color: $border-outline-click-button;
     color: $brand-secondary-color;
+    border-color: $border-outline-hovered-button;
   }
 
+  &:active {
+    border-color: $border-outline-click-button;
+    color: $brand-variant-color;
+  }
 }
 
 @mixin input-field {
@@ -32,7 +32,7 @@
   padding: 10px 12px;
   height: 40px;
   font-weight: 400;
-  font-size: $font-size-base; 
+  font-size: $font-size-base;
   line-height: $line-height-base;
   letter-spacing: 0.02em;
   color: $primary-color;
@@ -48,7 +48,7 @@
 }
 
 @mixin icon-wrapper-sidebar {
-  border-radius: $border-radius-input; 
+  border-radius: $border-radius-input;
   padding: 8px;
   width: 36px;
   height: 36px;
@@ -70,7 +70,7 @@
   border-radius: $border-radius-input;
   padding: 8px;
   font-weight: 400;
-  font-size: $font-size-base;   
+  font-size: $font-size-base;
   line-height: $line-height-base;
   letter-spacing: 0.02em;
   color: $primary-color;

@@ -14,6 +14,7 @@ import { EditingButtons } from "@/components/buttons/editing-buttons";
 import { useEditableCompanyDetails } from "@/hooks";
 import { useStore } from "@/app/providers/StoreContext";
 import { formatLabel } from "@/utils/formatLabel";
+import { CardEditButton } from "@/components/buttons/card-edit-button";
 
 export interface CompanyDetailsCardProps {
   agreement: string;
@@ -59,31 +60,15 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
 
   return (
     <CardWrapper
-      title="Company Details"
-      actions={
-        !editing
-          ? [
-              {
-                icon: (
-                  <Image
-                    src={editIcon}
-                    alt="Edit Icon"
-                    width={16}
-                    height={16}
-                  />
-                ),
-                label: "Edit",
-                onClick: startEditing,
-              },
-            ]
-          : []
-      }
-      editingActions={
-        editing ? (
-          <EditingButtons onSave={saveEditing} onCancel={cancelEditing} />
-        ) : undefined
-      }
-    >
+    title="Company Details"
+    headerRight={
+      !editing ? (
+        <CardEditButton onClick={startEditing} />
+      ) : (
+        <EditingButtons onSave={saveEditing} onCancel={cancelEditing} />
+      )
+    }
+  >
       {editing ? (
         <div className={styles.editModeContainer}>
           <AgreementFields

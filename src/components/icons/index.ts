@@ -1,0 +1,12 @@
+export { AccountIcon } from "./account-icon";
+export { AddPhotoIcon } from "./add-photo-icon";
+export { CheckIcon } from "./check-icon";
+export { CloseIcon } from "./close-icon";
+export { CompanyIcon } from "./company-icon";
+export { ContractorsIcon } from "./contractors-icon";
+export { EditIcon } from "./edit-icon";
+export { Logo } from "./logo";
+export { SearchIcon } from "./search-icon";
+export { SettingsIcon } from "./settings-icon";
+export { SignOutIcon } from "./signout-icon";
+export { TrashIcon } from "./trash-icon";

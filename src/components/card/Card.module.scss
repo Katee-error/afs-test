@@ -24,21 +24,14 @@
   letter-spacing: 0.02em;
 }
 
-.cardActions {
-  @include mixins.button-base;
-}
-
 .iconButton {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  @include mixins.button-base;
 
-  img {
-    fill: #ffffff; 
-    color: #ffffff;
+  .iconSvg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
   }
 
   span {
@@ -46,13 +39,7 @@
     font-weight: 600;
     line-height: $line-height-flattened-button;
     letter-spacing: 0.04em;
-    color: $brand-primary-color;
-
-    &:hover,
-    &:focus {
-      color: $brand-secondary-color;
-    }
-
+    color: inherit;
   }
 }
 

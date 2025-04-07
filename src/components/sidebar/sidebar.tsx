@@ -1,20 +1,17 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import companyIcon from "./../../../public/assets/icons/Company.svg";
-import contractorIcon from "./../../../public/assets/icons/Contractor.svg";
-import accountIcon from "./../../../public/assets/icons/Account.svg";
 import styles from "./Sidebar.module.scss";
 import { usePathname } from "next/navigation";
+import { AccountIcon, CompanyIcon, ContractorsIcon } from "../icons";
 
 export const Sidebar = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { href: "/organisation", label: "Organizations", icon: companyIcon },
-    { href: "/contractors", label: "Contractors", icon: contractorIcon },
-    { href: "/clients", label: "Clients", icon: accountIcon },
+    { href: "/organisation", label: "Organizations", icon: CompanyIcon },
+    { href: "/contractors", label: "Contractors", icon: ContractorsIcon },
+    { href: "/clients", label: "Clients", icon: AccountIcon },
   ];
 
   return (
@@ -25,22 +22,15 @@ export const Sidebar = () => {
       </div>
 
       <div className={styles.drawer}></div>
-
       <nav className={styles.nav}>
         <ul>
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
+          {navItems.map(({ href, label, icon: Icon }) => {
+            const isActive = pathname === href;
             return (
-              <li key={item.href} className={isActive ? styles.active : ""}>
-                <Link href={item.href} className={styles.navLink}>
-                  <Image
-                    src={item.icon}
-                    width={20}
-                    height={20}
-                    alt={`${item.label} icon`}
-                    className={isActive ? styles.lightIcon : styles.darkIcon}
-                  />
-                  <span>{item.label}</span>
+              <li key={href} className={isActive ? styles.active : ""}>
+                <Link href={href} className={styles.navLink}>
+                  <Icon className={styles.navIcon} />
+                  <span>{label}</span>
                 </Link>
               </li>
             );

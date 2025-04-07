@@ -4,6 +4,7 @@ $primary-color: rgba(0, 0, 0, 0.8);
 $secondary-color:  rgba(0, 0, 0, 0.5);
 $brand-primary-color: #3b3b3b; 
 $brand-secondary-color: #6d4aff; 
+$brand-variant-color: #6d4aff; 
 $light-color: rgba(0, 0, 0, 0.3); 
 $light-color-button-text: rgba(255, 255, 255, 0.95); 
 
@@ -18,7 +19,8 @@ $background-filled-click-button: #767676;
 //Outline button
 $border-outline-regular-button:rgba(0, 0, 0, 0.2); 
 $border-outline-hovered-button: rgba(0, 0, 0, 0.4); 
-$border-outline-click-button: $brand-secondary-color; 
+$border-outline-click-button: $brand-variant-color; 
+$text-outline-click-button: $brand-variant-color; 
 
 //Input border
 $border-input-regular-color: rgba(0, 0, 0, 0.2); 
