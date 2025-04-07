@@ -2,8 +2,8 @@
 const isProd = process.env.NODE_ENV === "production";
 const nextConfig = {
   output: "export",
-  basePath: isProd ? "/afs-test" : "",
-  assetPrefix: isProd ? "/afs-test/" : "",
+  basePath: isProd ? '/afs-test' : '',
+  assetPrefix: isProd ? '/afs-test/' : '',
   images: {
     unoptimized: true,
     remotePatterns: [
