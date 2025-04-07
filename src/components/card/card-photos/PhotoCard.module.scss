@@ -9,7 +9,6 @@
 .photoItem {
   position: relative;
   border-radius: 8px;
-  overflow: hidden;
   width: 144px;
   height: 108px;
 }
@@ -32,9 +31,9 @@
   justify-content: center;
 
   &:hover {
-    background: $background-filled-hovered-button;
+    background-color: $background-filled-hovered-button;
   }
   &:active {
-    background: $background-filled-click-button;
+    background-color: $background-filled-click-button;
   }
 }
