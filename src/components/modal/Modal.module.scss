@@ -114,4 +114,17 @@
     
   }
   
-
+  .previewContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .previewImage {
+    max-width: 600px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  

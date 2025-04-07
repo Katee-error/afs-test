@@ -28,13 +28,20 @@ export const AddPhotoDialog: React.FC<AddPhotoDialogProps> = ({
       <div className={styles.editDialog}>
         <h2>Upload your photo</h2>
         {previewUrl ? (
-          <div className={styles.previewContainer}>
-            <img
-              src={previewUrl}
-              alt="Preview"
-              className={styles.previewImage}
-            />
-          </div>
+      <div className={styles.previewContainer}>
+      <img
+        src={previewUrl}
+        alt="Preview"
+        className={styles.previewImage}
+        style={{
+          maxWidth: "600px",
+          maxHeight: "500px",
+          width: "auto",
+          height: "auto",
+          objectFit: "contain",
+        }}
+      />
+    </div>
         ) : (
           <div className={styles.customFileInput}>
             <label htmlFor="fileInput" className={styles.uploadButton}>
