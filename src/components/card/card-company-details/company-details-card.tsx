@@ -5,9 +5,14 @@ import { InfoRow } from "../card-info-row/card-info-row";
 import editIcon from "./../../../../public/assets/icons/Edit.svg";
 import styles from "./../Card.module.scss";
 import { CardWrapper } from "../card-wrapper";
-import {AgreementFields,BusinessEntityField, CompanyTypeField,} from "@/components/card/card-fields";
+import {
+  AgreementFields,
+  BusinessEntityField,
+  CompanyTypeField,
+} from "@/components/card/card-fields";
 import { EditingButtons } from "@/components/buttons/editing-buttons";
 import { useEditableCompanyDetails } from "@/hooks";
+import { useStore } from "@/app/providers/StoreContext";
 
 export interface CompanyDetailsCardProps {
   agreement: string;
@@ -41,6 +46,16 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
     (updatedData) => onSave?.(updatedData)
   );
 
+  const { organizationStore } = useStore();
+  const companyTypeOptions = (organizationStore?.orgData?.type || []).map(
+    (type: string) => ({ value: type, label: type })
+  );
+
+  const displayCompanyTypes =
+    values.companyTypes.length > 0
+      ? values.companyTypes.join(", ")
+      : "No types selected";
+
   return (
     <CardWrapper
       title="Company Details"
@@ -62,8 +77,12 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
             ]
           : []
       }
-         editingActions={editing && <EditingButtons onSave={saveEditing} onCancel={cancelEditing} />}
-         >
+      editingActions={
+        editing ? (
+          <EditingButtons onSave={saveEditing} onCancel={cancelEditing} />
+        ) : undefined
+      }
+    >
       {editing ? (
         <div className={styles.editModeContainer}>
           <AgreementFields
@@ -79,20 +98,18 @@ export const CompanyDetailsCard: React.FC<CompanyDetailsCardProps> = ({
           <CompanyTypeField
             value={values.companyTypes}
             onChange={(value) => updateField("companyTypes", value)}
-            placeholder={values.agreement}
+            placeholder="Select company types"
+            options={companyTypeOptions}
           />
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div className={styles.viewModeContainer}>
           <InfoRow
             label="Agreement:"
             value={`${values.agreement} / ${values.date}`}
           />
           <InfoRow label="Business entity:" value={values.businessEntity} />
-          <InfoRow
-            label="Company type:"
-            value={values.companyTypes.join(", ")}
-          />
+          <InfoRow label="Company type:" value={displayCompanyTypes} />
         </div>
       )}
     </CardWrapper>

@@ -1,15 +1,20 @@
 import React from "react";
 import { CustomMultiSelect } from "@/components/ui/multi-select/custom-multi-select";
-import { COMPANY_TYPE_OPTIONS } from "@/constant";
 import styles from "./../Card.module.scss";
 
-interface CompanyTypeFieldProps {
+export interface Option {
+  value: string;
+  label: string;
+}
+export interface CompanyTypeFieldProps {
+  options: Option[]; 
   value: string[];
   onChange: (value: string[]) => void;
   placeholder?: string;
 }
 
 export const CompanyTypeField: React.FC<CompanyTypeFieldProps> = ({
+  options,
   value,
   onChange,
   placeholder,
@@ -17,7 +22,7 @@ export const CompanyTypeField: React.FC<CompanyTypeFieldProps> = ({
   <div className={styles.row}>
     <label className={styles.label}>Company type</label>
     <CustomMultiSelect
-      options={COMPANY_TYPE_OPTIONS}
+      options={options}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
